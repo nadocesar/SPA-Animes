@@ -30,6 +30,7 @@ listMenu.appendChild(liHome)//
 
 const aHome = document.createElement('a')//essa tag a serve para adicionar o elemento "inicio" ao dropdown
 aHome.innerText = 'Inicio'//
+aHome.className = 'inicio'
 liHome.appendChild(aHome)//adicionando a tag aHome para o elemento li chamado de liHome
 
 const liSobre = document.createElement('li')//Criando outra tag li que recebera mais uma tag a para o dropdown
@@ -37,7 +38,27 @@ listMenu.appendChild(liSobre)// adicionando a tag listMenu o elemento liSobre
 
 const aSobre = document.createElement('a')//criando outra tag a para adicionar o elemento "Sobre" ao dropdown
 aSobre.innerText = 'Sobre'//dando o nome a essa classe
+aSobre.className = 'inicio'
 liSobre.appendChild(aSobre)//adicionando a tag a 'Sobre' ao elemento li 'liSobre'
+
+//*** Criando um link para Assitir naruto***/
+const liNaruto = document.createElement('li')//link = (https://gogoanime.tel///category/naruto-dub)
+listMenu.appendChild(liNaruto)
+
+const naruto = document.createElement('a')
+naruto.innerText = 'Assista Naruto'
+naruto.className = 'inicio'  // link para os videos ('https://gogoanime.tel///category/naruto-dub)
+listMenu.appendChild(naruto) //link API para assistir naruto(https://gogoanime.herokuapp.com/search?keyw=naruto)
+
+const linkNaruto = 'https://gogoanime.tel///category/naruto-dub'
+// * Função que gera o link para assistir videos do naruto *
+function openInNewTab(url){
+    const win = window.open(linkNaruto)
+    win.focus()
+}
+    naruto.addEventListener('click', () => {
+    openInNewTab(linkNaruto)
+})
 
 const liCategory = document.createElement('li')//Criando outra constante com a tag 'li' para a categoria que utilizara o dropdown
 liCategory.className = 'content-dropdown'//Nome
@@ -99,7 +120,7 @@ fetch('https://gogoanime.herokuapp.com/popular')
         data.filter(element => element.animeTitle
             .startsWith(input.value.toLowerCase())
             ).forEach(generateCard)
-        }))
+}))
 divSearch.appendChild(bottom)
 
 const cardNovo = document.createElement('div')

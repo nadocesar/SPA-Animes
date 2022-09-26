@@ -6,7 +6,18 @@
 }
 
 body {
-    background: #f1f1f1;
+    background: black;
+    
+}
+
+.logoText {
+    color: #fff;
+    font-family: 'Bungee Spice', cursive;
+    
+}
+.inicio {
+    color: #fff;
+    cursor: pointer;
 }
 
 .list-itens {
@@ -27,6 +38,7 @@ header {
     display:flex;
     align-items: center;
     justify-content: space-around;
+    background-color: rgb(33, 1, 1);
 }
 
 .listMenu {
@@ -41,23 +53,32 @@ header {
 }
 
 .mainCard {
-    width: 600px;
+    width: 100vh;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
+
 }
 
 /* Estilizando o card*/
 .divCard {
     width: 100px;
-    height: 100px;
-    position: relative;
-    background: #fff;
-    border-radius: 30px;
-    box-shadow: 0 0 15px 0 rgb 163,163,163;
+    height: 300px;
+    /* background: #fff; */
     font-family: 'Bungee Spice', cursive;
+    text-align: center;
     
 }
+
+.container {
+    background-image: url("./cyberpunk.jpg");
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+
+}
+
 
