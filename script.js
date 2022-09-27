@@ -5,6 +5,13 @@ document.body.appendChild(container)//adicionando o body ao html para ser mostra
 const header = document.createElement('header')//Criando uma header, seria um container dentro do container central
 container.appendChild(header) // adicionando a header a div central / container
 
+const box = document.createElement('input')
+box.type = 'checkbox'
+box.addEventListener('change', () => {
+    document.querySelector('html').classList.toggle('dark')
+})
+header.appendChild(box)
+
 const divTitle = document.createElement('div')//Criando um elemento div para logo do site (divtitle = titulo)
 divTitle.className = 'divTitle'
 header.appendChild(divTitle)// adicionando o titulo/logo a header "corpo"
@@ -30,6 +37,14 @@ listMenu.appendChild(liHome)//
 
 const aHome = document.createElement('a')//essa tag a serve para adicionar o elemento "inicio" ao dropdown
 aHome.innerText = 'Inicio'//
+aHome.addEventListener('click', () => {
+    const divCard = document.querySelector('.divCard')
+    const divSobre = document.querySelector('.divSobre')
+    if (divCard.style.display == 'grid'){
+        divSobre.style.display = 'none'
+    }
+
+})
 aHome.className = 'inicio'
 liHome.appendChild(aHome)//adicionando a tag aHome para o elemento li chamado de liHome
 
@@ -39,6 +54,7 @@ listMenu.appendChild(liSobre)// adicionando a tag listMenu o elemento liSobre
 const aSobre = document.createElement('a')//criando outra tag a para adicionar o elemento "Sobre" ao dropdown
 aSobre.innerText = 'Sobre'//dando o nome a essa classe
 aSobre.className = 'inicio'
+
 liSobre.appendChild(aSobre)//adicionando a tag a 'Sobre' ao elemento li 'liSobre'
 
 //*** Criando um link para Assitir naruto***/
@@ -182,7 +198,14 @@ function getAnime(){
     
  
 }
+const divSobre = document.createElement('div')
+divSobre.style.display = 'none'
+divSobre.className = 'divSobre'
+divCard.appendChild(divSobre)
 
 function sobre(){
+    const sobreTitle = document.createElement('h1')
+    sobreTitle.innerHTML = 'oh oakhsov '
+    divSobre.appendChild(sobreTitle)
 
 }
