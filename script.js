@@ -38,9 +38,12 @@ listMenu.appendChild(liHome)//
 const aHome = document.createElement('a')//essa tag a serve para adicionar o elemento "inicio" ao dropdown
 aHome.innerText = 'Inicio'//
 aHome.addEventListener('click', () => {
-    const divCard = document.querySelector('.divCard')
-    const divSobre = document.querySelector('.divSobre')
+    let divCard = document.querySelector('.divCard')
+    let divSobre = document.querySelector('.divSobre')
     if (divCard.style.display == 'grid'){
+        divSobre.style.display = 'none'
+    } else {
+        divCard.style.display = 'grid'
         divSobre.style.display = 'none'
     }
 
@@ -54,7 +57,18 @@ listMenu.appendChild(liSobre)// adicionando a tag listMenu o elemento liSobre
 const aSobre = document.createElement('a')//criando outra tag a para adicionar o elemento "Sobre" ao dropdown
 aSobre.innerText = 'Sobre'//dando o nome a essa classe
 aSobre.className = 'inicio'
+aSobre.addEventListener('click', () => {// PAra trocar a tela pra Sobre
+    let divCard = document.querySelector('.divCard')
+    let divSobre = document.querySelector('.divSobre')
+    divCard.style.display = 'none'
+    if (divSobre.style.display == 'flex'){
+        divCard.style.display = 'none'
+    } else {
+        divSobre.style.display = 'flex'
+        divCard.style.display = 'none'
+    }
 
+})
 liSobre.appendChild(aSobre)//adicionando a tag a 'Sobre' ao elemento li 'liSobre'
 
 //*** Criando um link para Assitir naruto***/
@@ -184,6 +198,10 @@ function generateCard(data){
 }
 //criar uma funçao para gerar um card, depois uma div para mostrar esse card
 
+const divAnimeFound = document.createElement('div')
+divAnimeFound.className = 'divAnimeFound'
+mainCard.appendChild(divAnimeFound)
+
 function getCard(getResposta){
         const cardResposta = document.createElement('div')
         cardResposta.className = 'cardResposta'
@@ -191,17 +209,28 @@ function getCard(getResposta){
     }
 
 function getAnime(){
+    let divCard = document.querySelector('.divCard')
+    let divSobre = document.querySelector('.divSobre')
+
+    let divAnimeFound = document.querySelector('divAnimeFound')
+
+    let inputSearch = document.querySelector('#search')
     fetch('https://gogoanime.herokuapp.com/popular')
     .then(respostas => respostas.json())
-    .then(getResposta => generateCard.map(el => generatedCard(el)))
-
-    
+    .then(dados => {
+        divCard.style.display = 'none'
+        divSobre.style.display = 'none'
+        // divAnimeFound.style = 
+        if (inputSearch.value !== ''){
+        dados.filter(el => el.animeTitle.startsWith(inputSearch.value))
+    .forEach()}
+})   
  
 }
 const divSobre = document.createElement('div')
 divSobre.style.display = 'none'
 divSobre.className = 'divSobre'
-divCard.appendChild(divSobre)
+mainCard.appendChild(divSobre)
 
 function sobre(){
     const sobreTitle = document.createElement('h1')
