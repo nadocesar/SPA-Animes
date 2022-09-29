@@ -5,8 +5,9 @@ document.body.appendChild(container)//adicionando o body ao html para ser mostra
 const header = document.createElement('header')//Criando uma header, seria um container dentro do container central
 container.appendChild(header) // adicionando a header a div central / container
 
-const box = document.createElement('input')
+const box = document.createElement('input')  //Funçao darkMode
 box.type = 'checkbox'
+//box.inner = 'DarkMode'
 box.addEventListener('change', () => {
     document.querySelector('html').classList.toggle('dark')
 })
