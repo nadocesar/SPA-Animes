@@ -5,13 +5,13 @@ document.body.appendChild(container)//adicionando o body ao html para ser mostra
 const header = document.createElement('header')//Criando uma header, seria um container dentro do container central
 container.appendChild(header) // adicionando a header a div central / container
 
-const box = document.createElement('input')  //Funçao darkMode
-box.type = 'checkbox'
-//box.inner = 'DarkMode'
-box.addEventListener('change', () => {
-    document.querySelector('html').classList.toggle('dark')
-})
-header.appendChild(box)
+// const box = document.createElement('input')  //Funçao darkMode
+// box.type = 'checkbox'
+// //box.inner = 'DarkMode'
+// box.addEventListener('change', () => {
+//     document.querySelector('html').classList.toggle('dark')
+// })
+// header.appendChild(box)
 
 const divTitle = document.createElement('div')//Criando um elemento div para logo do site (divtitle = titulo)
 divTitle.className = 'divTitle'
@@ -140,23 +140,41 @@ input.type = 'text'
 input.id = 'search'
 divSearch.appendChild(input)
 
-const bottom = document.createElement('input')//craindo o elemento botao buscar
+
+const bottom = document.createElement('button')//craindo o elemento botao buscar
 bottom.className = 'bottom'
-bottom.type = 'submit'
-bottom.value = 'Buscar'
-bottom.addEventListener('click', 
-fetch('https://gogoanime.herokuapp.com/popular')
-       .then(respostas => respostas.json())
-       .then(data =>{ 
-        data.filter(element => element.animeTitle
-            .startsWith(input.value.toLowerCase())
-            ).forEach(generateCard)
-}))
+bottom.innerText = 'Buscar'
+bottom.addEventListener('click', () => {
+    let divCard1 = document.querySelector('.divCard')
+    let divSobre = document.querySelector('.divSobre')
+    let divAnimeFound1 = document.querySelector('.divAnimeFound')
+    let inputSearch = document.querySelector('#search')
+    divCard1.style.display = "none"
+    divSobre1.style.display = 'none'
+    divAnimeFound1.style.display = 'block'
+    fetch('https://gogoanime.herokuapp.com/popular')
+    .then(respostas => respostas.json())
+    .then(dados => {
+        if (inputSearch.value !== ''){
+            dados.filter(el => el.animeTitle.startsWith(inputSearch.value.toLowerCase()))
+            .forEach(console.log(getAnimeFound))
+        } 
+    })   
+}) 
 divSearch.appendChild(bottom)
 
-const cardNovo = document.createElement('div')
-cardNovo.className = 'cardNovo'
-container.appendChild(cardNovo)
+const box = document.createElement('input')  //Funçao darkMode
+box.className = 'box'
+box.type = 'checkbox'
+box.id = 'darkmode'
+box.addEventListener('change', () => {
+    document.querySelector('html').classList.toggle('dark')
+})
+header.appendChild(box)
+
+const darkCheckbox = document.createElement('label')
+darkCheckbox.innerText = 'DarkMode'
+darkmode.appendChild(darkCheckbox)
 
 const mainCard = document.createElement('div')
 mainCard.className = 'mainCard'
@@ -165,6 +183,46 @@ container.appendChild(mainCard)
 const divCard = document.createElement('div')//card 
 divCard.className = 'divCard'
 mainCard.appendChild(divCard)
+
+const divSobre = document.createElement('div')
+divSobre.style.display = 'none'
+divSobre.className = 'divSobre'
+mainCard.appendChild(divSobre)
+
+function sobre(){
+    const headerSobre = document.createElement('div')
+    headerSobre.className = 'headerSobre'
+    divSobre.appendChild(headerSobre)
+
+    const sobreTitle = document.createElement('h1')
+    sobreTitle.innerText = 'oh oakhsov '
+    headerSobre.appendChild(sobreTitle)
+
+    const sobreNos = document.createElement('div')
+    sobreNos.className = 'sobreNos'
+    divSobre.appendChild(sobreNos)
+
+    const titleSobre = document.createElement('h1')
+    titleSobre.innerText = 'Sobre Nos'
+    sobreNos.appendChild(titleSobre)
+
+}
+const divAnimeFound = document.createElement('div')
+divAnimeFound.style.display = 'none'
+divAnimeFound.className = 'divAnimeFound'
+mainCard.appendChild(divAnimeFound)
+
+const cardNovo = document.createElement('div')
+cardNovo.className = 'cardNovo'
+container.appendChild(cardNovo)
+
+// const mainCard = document.createElement('div')
+// mainCard.className = 'mainCard'
+// container.appendChild(mainCard)
+
+// const divCard = document.createElement('div')//card 
+// divCard.className = 'divCard'
+// mainCard.appendChild(divCard)
 
 //Função pegar a url do anime para converter em json e 
 fetch('https://gogoanime.herokuapp.com/popular')// pega a url do anime
@@ -199,43 +257,77 @@ function generateCard(data){
 }
 //criar uma funçao para gerar um card, depois uma div para mostrar esse card
 
-const divAnimeFound = document.createElement('div')
-divAnimeFound.className = 'divAnimeFound'
-mainCard.appendChild(divAnimeFound)
+// const divSobre = document.createElement('div')
+// divSobre.style.display = 'none'
+// divSobre.className = 'divSobre'
+// mainCard.appendChild(divSobre)
 
-function getCard(getResposta){
-        const cardResposta = document.createElement('div')
-        cardResposta.className = 'cardResposta'
-        mainCard.appendChild(cardResposta)
-    }
+// function sobre(){
+//     const sobreTitle = document.createElement('h1')
+//     sobreTitle.innerHTML = 'oh oakhsov '
+//     divSobre.appendChild(sobreTitle)
+
+// }
+
+
+// const divAnimeFound = document.createElement('div')
+// divAnimeFound.style.display = 'none'
+// divAnimeFound.className = 'divAnimeFound'
+// mainCard.appendChild(divAnimeFound)
+
+// function getCard(getResposta){
+//         const cardResposta = document.createElement('div')
+//         cardResposta.className = 'cardResposta'
+//         mainCard.appendChild(cardResposta)
+//     }
 
 function getAnime(){
-    let divCard = document.querySelector('.divCard')
-    let divSobre = document.querySelector('.divSobre')
-
-    let divAnimeFound = document.querySelector('divAnimeFound')
-
-    let inputSearch = document.querySelector('#search')
-    fetch('https://gogoanime.herokuapp.com/popular')
-    .then(respostas => respostas.json())
-    .then(dados => {
-        divCard.style.display = 'none'
-        divSobre.style.display = 'none'
-        // divAnimeFound.style = 
-        if (inputSearch.value !== ''){
-        dados.filter(el => el.animeTitle.startsWith(inputSearch.value))
-    .forEach()}
-})   
- 
+    // // let divCard1 = document.querySelector('.divCard')
+    // // let divSobre1 = document.querySelector('.divSobre')
+    // // let divAnimeFound1 = document.querySelector('.divAnimeFound')
+    // let inputSearch = document.querySelector('#search')
+    // // divCard1.style.display = "none"
+    // // divSobre1.style.display = 'none'
+    // // divAnimeFound1.style.display = 'block'
+    // divCard.style.display = 'none'
+    // divSobre.style.display = 'none'
+    // divAnimeFound.style.display = 'block'
+    // fetch('https://gogoanime.herokuapp.com/popular')
+    // .then(respostas => respostas.json())
+    // .then(dados => {
+    //     if (inputSearch.value !== ''){
+    //         dados.filter(el => el.animeTitle.startsWith(inputSearch.value.toLowerCase()))
+    //         .forEach(e => getAnimeFound(e))
+    //     } 
+    // })   
 }
-const divSobre = document.createElement('div')
-divSobre.style.display = 'none'
-divSobre.className = 'divSobre'
-mainCard.appendChild(divSobre)
 
-function sobre(){
-    const sobreTitle = document.createElement('h1')
-    sobreTitle.innerHTML = 'oh oakhsov '
-    divSobre.appendChild(sobreTitle)
-
+function getAnimeFound(data){
+    fetch(data)
+    .then((response) => response.json())
+    .then((data) => {
+        let divAnimeFound = document.querySelector('.divAnimeFound')
+        const cardFound = document.createElement('div')
+        cardFound.className = 'cardFound'
+        divAnimeFound.appendChild(cardFound)
+    
+       const imgFound = document.createElement('img')
+       imgFound.className = 'img'
+       imgFound.src = data.animeImg 
+       cardFound.appendChild(imgFound)
+    
+       const CardTitleFound = document.createElement('h3')//titulo do anime
+       CardTitleFound.className = 'CardTitleFound'
+       CardTitleFound.innerHTML = data.animeTitle//puxando dados da data
+       cardFound.appendChild(CardTitleFound)
+    
+       const buttonFound = document.createElement('button')
+       buttonFound.className = 'buttonFound'
+       cardFound.appendChild(buttonFound)
+    
+       const linkFound = document.createElement('a')//tag para alocar os links de video
+       linkFound.href = data.animeUrl //serve para colocar um link 
+       linkFound.innerHTML = 'Assistir'
+       buttonFound.appendChild(linkFound)
+    })
 }

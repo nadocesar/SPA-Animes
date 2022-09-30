@@ -100,3 +100,7 @@ header {
 .cardItem {
     width: 300px;
 }
+
+.box {
+    cursor: pointer;
+}
