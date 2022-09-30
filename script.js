@@ -62,11 +62,13 @@ aSobre.addEventListener('click', () => {// PAra trocar a tela pra Sobre
     let divCard = document.querySelector('.divCard')
     let divSobre = document.querySelector('.divSobre')
     divCard.style.display = 'none'
+    divSobre.innerHTML = ''
     if (divSobre.style.display == 'flex'){
         divCard.style.display = 'none'
     } else {
         divSobre.style.display = 'flex'
         divCard.style.display = 'none'
+        sobre()
     }
 
 })
@@ -146,7 +148,7 @@ bottom.className = 'bottom'
 bottom.innerText = 'Buscar'
 bottom.addEventListener('click', () => {
     let divCard1 = document.querySelector('.divCard')
-    let divSobre = document.querySelector('.divSobre')
+    let divSobre1 = document.querySelector('.divSobre')
     let divAnimeFound1 = document.querySelector('.divAnimeFound')
     let inputSearch = document.querySelector('#search')
     divCard1.style.display = "none"
@@ -155,10 +157,9 @@ bottom.addEventListener('click', () => {
     fetch('https://gogoanime.herokuapp.com/popular')
     .then(respostas => respostas.json())
     .then(dados => {
-        if (inputSearch.value !== ''){
-            dados.filter(el => el.animeTitle.startsWith(inputSearch.value.toLowerCase()))
-            .forEach(console.log(getAnimeFound))
-        } 
+            console.log(inputSearch)
+            dados.filter((el) => el.animeTitle.toLowerCase().startsWith(inputSearch.value.toLowerCase()))
+            .forEach(getAnimeFound)
     })   
 }) 
 divSearch.appendChild(bottom)
@@ -173,8 +174,8 @@ box.addEventListener('change', () => {
 header.appendChild(box)
 
 const darkCheckbox = document.createElement('label')
-darkCheckbox.innerText = 'DarkMode'
-darkmode.appendChild(darkCheckbox)
+darkCheckbox.innerText = 'LightMode'
+header.appendChild(darkCheckbox)
 
 const mainCard = document.createElement('div')
 mainCard.className = 'mainCard'
@@ -190,21 +191,53 @@ divSobre.className = 'divSobre'
 mainCard.appendChild(divSobre)
 
 function sobre(){
-    const headerSobre = document.createElement('div')
-    headerSobre.className = 'headerSobre'
-    divSobre.appendChild(headerSobre)
+    const divDescSobre = document.createElement('div')//Div Mae do sobre
+    divDescSobre.className = 'divDescSobre'
+    divSobre.appendChild(divDescSobre)
 
-    const sobreTitle = document.createElement('h1')
-    sobreTitle.innerText = 'oh oakhsov '
-    headerSobre.appendChild(sobreTitle)
+    const sobreTitle = document.createElement('h1')//header sobre
+    sobreTitle.className = 'sobreTitle'
+    sobreTitle.innerText = 'SOBRE'
+    divDescSobre.appendChild(sobreTitle)
 
-    const sobreNos = document.createElement('div')
+    const sobreNos = document.createElement('div')//Div para receber Img imagem e conteudo
     sobreNos.className = 'sobreNos'
     divSobre.appendChild(sobreNos)
 
-    const titleSobre = document.createElement('h1')
-    titleSobre.innerText = 'Sobre Nos'
-    sobreNos.appendChild(titleSobre)
+    const sobreNosImg = document.createElement('div')//Div para a imagem do sobre nos
+    sobreNosImg.className = 'sobreNosImg'
+    sobreNos.appendChild(sobreNosImg)
+
+    const sobreImg = document.createElement('img')//imagem sobre nos
+    sobreImg.className = 'sobreImg'
+    sobreImg.setAttribute ('src', 'https://cdn.falauniversidades.com.br/wp-content/uploads/2019/10/anime11-768x384.jpg')
+    sobreNosImg.appendChild(sobreImg)
+
+    const sobreNosDiv = document.createElement('div')//div para receber os dois conteudo sobre nos
+    sobreNosDiv.className = 'sobreNosDiv'
+    sobreNos.appendChild(sobreNosDiv)
+
+    const textSobreDiv = document.createElement('div')//Div para receber o conteudo sobre nos
+    textSobreDiv.className = 'textSobreDiv'
+    sobreNosDiv.appendChild(textSobreDiv)
+
+    const titleSobre = document.createElement('p')//Conteudo sobre nos
+    titleSobre.className = 'titleSobre'
+    titleSobre.innerHTML = 'Este site é destinado a cultura de animes, pessoas que gostem de fortes emoções, romances, lutas e fantasias.<br>O anime, como qualquer outra forma de arte, pode influenciar o mundo interior e a mente de todas as pessoas, em especial dos mais novos. Assim como filmes, desenhos animados, livros, o anime evoca emoções, faz você ter empatia, provoca uma resposta em quem o assiste.<br>Visando a paixão daqueles que gostem desse tipo de cultura, o ReiAnimes foi criado para que usuários possam assistir os melhores e mais populares animes da atualidade.<br>Conteúdo dos mais populares animes divido em categorias, com muitas opções de procura e uma guia especial para um anime dos mais famosos da década.'
+    textSobreDiv.appendChild(titleSobre)
+
+    const divTitleSobre = document.createElement('div')//Div para conteudo All Rights Reserved
+    divTitleSobre.className = 'divTitleSobre'
+    sobreNosDiv.appendChild(divTitleSobre)
+
+    const copyright =document.createElement('p')//conteudo All Rights Reserved
+    copyright.innerHTML = 'Copyright by Refsnes Data. All Rights Reserved.<br> ReiAnimes is Powered by'
+    divTitleSobre.appendChild(copyright)
+
+    const divSocial = document.createElement('div')//div para links de redes sociais
+    divSocial.className = 'divSocial'
+    divSobre.appendChild(divSocial)
+
 
 }
 const divAnimeFound = document.createElement('div')
@@ -215,14 +248,6 @@ mainCard.appendChild(divAnimeFound)
 const cardNovo = document.createElement('div')
 cardNovo.className = 'cardNovo'
 container.appendChild(cardNovo)
-
-// const mainCard = document.createElement('div')
-// mainCard.className = 'mainCard'
-// container.appendChild(mainCard)
-
-// const divCard = document.createElement('div')//card 
-// divCard.className = 'divCard'
-// mainCard.appendChild(divCard)
 
 //Função pegar a url do anime para converter em json e 
 fetch('https://gogoanime.herokuapp.com/popular')// pega a url do anime
@@ -255,57 +280,23 @@ function generateCard(data){
    linkVideo.innerHTML = 'Assistir'
    buttonCard.appendChild(linkVideo)
 }
-//criar uma funçao para gerar um card, depois uma div para mostrar esse card
 
-// const divSobre = document.createElement('div')
-// divSobre.style.display = 'none'
-// divSobre.className = 'divSobre'
-// mainCard.appendChild(divSobre)
+// Criando o Botão que leva ao topo do site
+const divBtn = document.createElement('div')//Criando um elemento div para colocar o botao topo
+divBtn.className = 'divBtn'
+container.appendChild(divBtn)// adicionando a div do botao ao container
 
-// function sobre(){
-//     const sobreTitle = document.createElement('h1')
-//     sobreTitle.innerHTML = 'oh oakhsov '
-//     divSobre.appendChild(sobreTitle)
+var btn = document.createElement('input')
+btn.className = 'btnTopo'
+btn.type = 'submit'
+btn.value = 'TOPO'
+divBtn.appendChild(btn)
 
-// }
-
-
-// const divAnimeFound = document.createElement('div')
-// divAnimeFound.style.display = 'none'
-// divAnimeFound.className = 'divAnimeFound'
-// mainCard.appendChild(divAnimeFound)
-
-// function getCard(getResposta){
-//         const cardResposta = document.createElement('div')
-//         cardResposta.className = 'cardResposta'
-//         mainCard.appendChild(cardResposta)
-//     }
-
-function getAnime(){
-    // // let divCard1 = document.querySelector('.divCard')
-    // // let divSobre1 = document.querySelector('.divSobre')
-    // // let divAnimeFound1 = document.querySelector('.divAnimeFound')
-    // let inputSearch = document.querySelector('#search')
-    // // divCard1.style.display = "none"
-    // // divSobre1.style.display = 'none'
-    // // divAnimeFound1.style.display = 'block'
-    // divCard.style.display = 'none'
-    // divSobre.style.display = 'none'
-    // divAnimeFound.style.display = 'block'
-    // fetch('https://gogoanime.herokuapp.com/popular')
-    // .then(respostas => respostas.json())
-    // .then(dados => {
-    //     if (inputSearch.value !== ''){
-    //         dados.filter(el => el.animeTitle.startsWith(inputSearch.value.toLowerCase()))
-    //         .forEach(e => getAnimeFound(e))
-    //     } 
-    // })   
-}
+btn.addEventListener('click', function(){//Aqui a função que vai pegar o botao e subir ao topo
+    window.scrollTo(0,0)
+})
 
 function getAnimeFound(data){
-    fetch(data)
-    .then((response) => response.json())
-    .then((data) => {
         let divAnimeFound = document.querySelector('.divAnimeFound')
         const cardFound = document.createElement('div')
         cardFound.className = 'cardFound'
@@ -329,5 +320,4 @@ function getAnimeFound(data){
        linkFound.href = data.animeUrl //serve para colocar um link 
        linkFound.innerHTML = 'Assistir'
        buttonFound.appendChild(linkFound)
-    })
 }

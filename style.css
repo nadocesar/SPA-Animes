@@ -4,13 +4,13 @@
     box-sizing: border-box;
 }
 :root {
-    --bg-color: #fafafa;
-    --color: black;
+    --bg-color: #000;
+    --color: white;
 }
 
 .dark:root {
-    --bg-color: #000;
-    --color: white;
+    --bg-color: #fafafa;
+    --color: black;
 }
 
 .content-dropdown {
@@ -103,4 +103,51 @@ header {
 
 .box {
     cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.btnTopo {
+    position: fixed;
+    bottom: 50px;
+    right: 150px;
+}
+
+.divSobre {
+    display: flex;  
+    flex-direction: column;  
+}
+
+.divTitleSobre {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.sobreTitle {
+    font-family: 'Bungee Spice', cursive;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+}
+
+.sobreImg {
+    width: 450px;
+    height: 350px;
+}
+
+.sobreNos {
+    display: flex;
+    justify-content: flex-end;
+    justify-content: space-around;
+}
+
+.titeSobre {
+    display: flex;
+    flex-direction: column;
+}
+
+.sobreNosDiv {
+    display: flex;
+    flex-direction: column;
 }
