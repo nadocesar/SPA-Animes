@@ -59,15 +59,18 @@ const aSobre = document.createElement('a')//criando outra tag a para adicionar o
 aSobre.innerText = 'Sobre'//dando o nome a essa classe
 aSobre.className = 'inicio'
 aSobre.addEventListener('click', () => {// PAra trocar a tela pra Sobre
+    let divAnimeFound = document.querySelector('.divAnimeFound')
     let divCard = document.querySelector('.divCard')
     let divSobre = document.querySelector('.divSobre')
     divCard.style.display = 'none'
     divSobre.innerHTML = ''
     if (divSobre.style.display == 'flex'){
         divCard.style.display = 'none'
+        divAnimeFound.style.display = 'none'
     } else {
         divSobre.style.display = 'flex'
         divCard.style.display = 'none'
+        divAnimeFound.style.display = 'none'
         sobre()
     }
 
@@ -195,11 +198,6 @@ function sobre(){
     divDescSobre.className = 'divDescSobre'
     divSobre.appendChild(divDescSobre)
 
-    const sobreTitle = document.createElement('h1')//header sobre
-    sobreTitle.className = 'sobreTitle'
-    sobreTitle.innerText = 'SOBRE'
-    divDescSobre.appendChild(sobreTitle)
-
     const sobreNos = document.createElement('div')//Div para receber Img imagem e conteudo
     sobreNos.className = 'sobreNos'
     divSobre.appendChild(sobreNos)
@@ -217,13 +215,22 @@ function sobre(){
     sobreNosDiv.className = 'sobreNosDiv'
     sobreNos.appendChild(sobreNosDiv)
 
+    const headerSobre = document.createElement('div')//Div para header do sobre
+    headerSobre.className = 'headerSobre'
+    sobreNosDiv.appendChild(headerSobre)
+
+    const sobreTitle = document.createElement('h1')//header sobre
+    sobreTitle.className = 'sobreTitle'
+    sobreTitle.innerText = 'SOBRE'
+    headerSobre.appendChild(sobreTitle)
+
     const textSobreDiv = document.createElement('div')//Div para receber o conteudo sobre nos
     textSobreDiv.className = 'textSobreDiv'
     sobreNosDiv.appendChild(textSobreDiv)
 
     const titleSobre = document.createElement('p')//Conteudo sobre nos
     titleSobre.className = 'titleSobre'
-    titleSobre.innerHTML = 'Este site é destinado a cultura de animes, pessoas que gostem de fortes emoções, romances, lutas e fantasias.<br>O anime, como qualquer outra forma de arte, pode influenciar o mundo interior e a mente de todas as pessoas, em especial dos mais novos. Assim como filmes, desenhos animados, livros, o anime evoca emoções, faz você ter empatia, provoca uma resposta em quem o assiste.<br>Visando a paixão daqueles que gostem desse tipo de cultura, o ReiAnimes foi criado para que usuários possam assistir os melhores e mais populares animes da atualidade.<br>Conteúdo dos mais populares animes divido em categorias, com muitas opções de procura e uma guia especial para um anime dos mais famosos da década.'
+    titleSobre.innerHTML = 'Este site é destinado a cultura de animes, pessoas que gostem de fortes emoções, romances, lutas e fantasias.<br>O anime, como qualquer outra forma de arte, pode influenciar o mundo interior e a mente de todas as pessoas, em especial dos mais novos. Assim como filmes, desenhos animados, livros, o anime evoca emoções, faz você ter empatia, provoca uma resposta em quem o assiste.<br>Visando a paixão daqueles que gostem desse tipo de cultura, o ReiAnimes foi criado para que usuários possam assistir os melhores e mais populares animes da atualidade.<br>Conteúdo dos mais populares animes divido em categorias, com muitas opções de procura e uma guia especial para um anime dos mais famosos da década.<br>'
     textSobreDiv.appendChild(titleSobre)
 
     const divTitleSobre = document.createElement('div')//Div para conteudo All Rights Reserved
@@ -237,9 +244,8 @@ function sobre(){
     const divSocial = document.createElement('div')//div para links de redes sociais
     divSocial.className = 'divSocial'
     divSobre.appendChild(divSocial)
-
-
 }
+
 const divAnimeFound = document.createElement('div')
 divAnimeFound.style.display = 'none'
 divAnimeFound.className = 'divAnimeFound'

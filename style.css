@@ -115,13 +115,20 @@ header {
 
 .divSobre {
     display: flex;  
-    flex-direction: column;  
+    flex-direction: column; 
+    margin-top: 250px;
 }
 
 .divTitleSobre {
     display: flex;
     align-items: center;
     justify-content: right;
+}
+
+.headerSobre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .sobreTitle {
@@ -134,12 +141,13 @@ header {
 .sobreImg {
     width: 450px;
     height: 350px;
-}
+}  
 
 .sobreNos {
     display: flex;
     justify-content: flex-end;
     justify-content: space-around;
+    align-items: flex-end;
 }
 
 .titeSobre {
@@ -148,6 +156,8 @@ header {
 }
 
 .sobreNosDiv {
+    width: 450px;
+    height: 350px;
     display: flex;
     flex-direction: column;
 }
