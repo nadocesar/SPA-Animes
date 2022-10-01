@@ -107,6 +107,12 @@ header {
     height: 30px;
 }
 
+.divDesc {
+    display: flex;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
 .btnTopo {
     position: fixed;
     bottom: 50px;

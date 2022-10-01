@@ -17,6 +17,14 @@ const divTitle = document.createElement('div')//Criando um elemento div para log
 divTitle.className = 'divTitle'
 header.appendChild(divTitle)// adicionando o titulo/logo a header "corpo"
 
+const divDesc = document.createElement('div')
+divDesc.className = 'divDesc'
+container.appendChild(divDesc)
+
+const descricao = document.createElement('h3')
+descricao.innerHTML = 'Assista os Animes mais populares da atualidade'
+divDesc.appendChild(descricao)
+
 const logoText = document.createElement('h1')//criando um elemento h1 que seria o nome da logo
 logoText.className = 'logoText'//Adicionando nome ao logotext, para usar no css
 logoText.innerText = 'ReiAnimes'//InnerText serve para escrever o que deseja aparecer no titulo do site
