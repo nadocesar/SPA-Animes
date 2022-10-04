@@ -245,7 +245,8 @@ function sobre(){
     divTitleSobre.className = 'divTitleSobre'
     sobreNosDiv.appendChild(divTitleSobre)
 
-    const copyright =document.createElement('p')//conteudo All Rights Reserved
+    const copyright = document.createElement('p')//conteudo All Rights Reserved
+    copyright.className = 'copyright'
     copyright.innerHTML = 'Copyright by Refsnes Data. All Rights Reserved.<br> ReiAnimes is Powered by'
     divTitleSobre.appendChild(copyright)
 

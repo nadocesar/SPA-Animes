@@ -11,6 +11,7 @@
 .dark:root {
     --bg-color: #fafafa;
     --color: black;
+    --colortext: gray;
 }
 
 .content-dropdown {
@@ -150,15 +151,17 @@ header {
 }  
 
 .sobreNos {
+    background-color: rgb(25, 5, 68);
     display: flex;
     justify-content: flex-end;
     justify-content: space-around;
     align-items: flex-end;
 }
 
-.titeSobre {
+.titleSobre {
     display: flex;
     flex-direction: column;
+    color: var(--colortext);
 }
 
 .sobreNosDiv {
@@ -166,4 +169,7 @@ header {
     height: 350px;
     display: flex;
     flex-direction: column;
+}
+.copyright {
+    color: var(--colortext);
 }
